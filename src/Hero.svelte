@@ -31,7 +31,7 @@ Renders a visual replica of the Immersive Template hero.
 -->
 
 <script>
-  import { globalState } from "./state.svelte.js";
+  // import { globalState } from "./state.svelte.js";
 
   import Grid from "./components/Grid/Grid.svelte";
   import GridRow from "./components/Grid/_GridRow.svelte";
@@ -42,18 +42,20 @@ Renders a visual replica of the Immersive Template hero.
   import Video from "./components/Video/Video.svelte";
   import Dek from "./components/Hero/_Dek.svelte";
   import Byline from "./components/Hero/_Byline.svelte";
-  import Counter from "./components/Counter/Counter.svelte";
+  // import Counter from "./components/Counter/Counter.svelte";
 
   import videos from "./data/videos.json";
+  // placeholder hero art; also the source of the story's palette (tailwind.css)
+  import heroCollage from "./assets/hero-collage.webp";
 
   /** @type {{sectionLabel?: string; headline?: string; timestamp?: string; heroImageUrl?: string; heroImageCaption?: string; heroImageAltText?: string; dek?: string; authorName?: string; authorBioUrl?: string; heroVideoUuid?: string;}} */
   let {
-    sectionLabel = "Section label",
-    headline = "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+    sectionLabel = "Strib Varsity",
+    headline = "SOLE test build",
     timestamp = "December 1, 1977",
-    heroImageUrl = "https://arc.stimg.co/startribunemedia/4SPNT7DI36ANT2SOB5N5EJAIJU.jpg",
-    heroImageCaption = "Lorem ipsum dolor",
-    heroImageAltText = "",
+    heroImageUrl = heroCollage,
+    heroImageCaption = "Illustration by Joe Rull",
+    heroImageAltText = "Collage of high school athletes’ footwear: basketball shoes, track spikes, soccer cleats and hockey skates over graph paper.",
     dek = "Lorem ipsum dolor sit amet consectetur adipiscing elit, fusce sociis at montes vitae tempor enim, venenatis tristique feugiat arcu dis ridiculus.",
     authorName = "Bryan Brussee",
     authorBioUrl = "",
@@ -61,72 +63,76 @@ Renders a visual replica of the Immersive Template hero.
   } = $props();
 </script>
 
-<Grid additionalClasses="gap-y-8 md:gap-y-10">
-  <GridRow>
-    <div class="flex justify-center mt-8 mb-6">
-      <SectionLabel>{sectionLabel}</SectionLabel>
-    </div>
-    <div class="flex flex-col gap-y-6 md:gap-y-8 text-center">
-      <Headline>{headline}</Headline>
-      <Timestamp>{timestamp}</Timestamp>
-    </div>
-  </GridRow>
+<div class="bg-white pb-12 md:pb-16">
+  <Grid additionalClasses="gap-y-8 md:gap-y-10">
+    <GridRow>
+      <div class="flex justify-center mt-8 mb-6">
+        <SectionLabel>{sectionLabel}</SectionLabel>
+      </div>
+      <div class="flex flex-col gap-y-6 md:gap-y-8 text-center">
+        <Headline>{headline}</Headline>
+        <Timestamp>{timestamp}</Timestamp>
+      </div>
+    </GridRow>
 
-  {#if heroVideoUuid}
-    <GridRow variant="fullBleed">
-      <Video
-        {...videos.find((v) => v.uuid === heroVideoUuid)}
-        credit="Video by the Minnesota Star Tribune"
-        showControls={false}
-        shouldLoop={true}
-        hasCenteredCaption={true}
-        shouldMountWhileNear={false}
+    {#if heroVideoUuid}
+      <GridRow variant="fullBleed">
+        <Video
+          {...videos.find((v) => v.uuid === heroVideoUuid)}
+          credit="Video by the Minnesota Star Tribune"
+          showControls={false}
+          shouldLoop={true}
+          hasCenteredCaption={true}
+          shouldMountWhileNear={false}
+        />
+      </GridRow>
+    {:else if heroImageUrl}
+      <GridRow variant={"fullBleed"}>
+        <Image
+          variant={"captionCentered"}
+          src={heroImageUrl}
+          alt={heroImageAltText}
+          caption={heroImageCaption}
+          additionalClasses="pt-0!"
+        />
+      </GridRow>
+    {/if}
+
+    <!-- Unused template furniture, kept for reference:
+    <GridRow>
+      <Counter
+        count={globalState.count}
+        handleIncrement={() => {
+          globalState.count++;
+        }}
+        handleDecrement={() => {
+          globalState.count--;
+        }}
       />
     </GridRow>
-  {:else if heroImageUrl}
-    <GridRow variant={"fullBleed"}>
-      <Image
-        variant={"captionCentered"}
-        src={heroImageUrl}
-        alt={heroImageAltText}
-        caption={heroImageCaption}
-        additionalClasses="pt-0!"
-      />
-    </GridRow>
-  {/if}
+    -->
 
-  <GridRow>
-    <Counter
-      count={globalState.count}
-      handleIncrement={() => {
-        globalState.count++;
-      }}
-      handleDecrement={() => {
-        globalState.count--;
-      }}
-    />
-  </GridRow>
+    <GridRow
+      additionalClasses="justify-self-center md:max-w-[535px] md:text-center lg:max-w-[712px]"
+    >
+      <div class="flex flex-col gap-y-5 md:justify-items-center md:items-center">
+        <Dek>
+          {dek}
+        </Dek>
+        <div class="flex items-center w-full gap-x-2 md:justify-center">
+          <div class="flex flex-col gap-y-0.5 gap-x-1 md:flex-row">
+            {#if authorName}
+              <div class="flex">
+                <Byline href={authorBioUrl}>By {authorName}</Byline>
+              </div>
+            {/if}
 
-  <GridRow
-    additionalClasses="justify-self-center md:max-w-[535px] md:text-center lg:max-w-[712px]"
-  >
-    <div class="flex flex-col gap-y-5 md:justify-items-center md:items-center">
-      <Dek>
-        {dek}
-      </Dek>
-      <div class="flex items-center w-full gap-x-2 md:justify-center">
-        <div class="flex flex-col gap-y-0.5 gap-x-1 md:flex-row">
-          {#if authorName}
-            <div class="flex">
-              <Byline href={authorBioUrl}>By {authorName}</Byline>
-            </div>
-          {/if}
-
-          <span class="text-text-secondary font-utility-label-reg-02">
-            The Minnesota Star Tribune
-          </span>
+            <span class="text-text-secondary font-utility-label-reg-02">
+              The Minnesota Star Tribune
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </GridRow>
-</Grid>
+    </GridRow>
+  </Grid>
+</div>

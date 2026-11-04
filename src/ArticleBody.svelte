@@ -31,21 +31,21 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
 -->
 
 <script>
-  import { globalState } from "./state.svelte.js";
+  // import { globalState } from "./state.svelte.js";
 
   import Grid from "./components/Grid/Grid.svelte";
   import GridRow from "./components/Grid/_GridRow.svelte";
-  import Subhead from "./components/ArticleBody/_Subhead.svelte";
+  // import Subhead from "./components/ArticleBody/_Subhead.svelte";
   import Paragraph from "./components/ArticleBody/_Paragraph.svelte";
   import Dropcap from "./components/ArticleBody/_Dropcap.svelte";
-  import Image from "./components/Image/Image.svelte";
-  import Gallery from "./components/Image/Gallery.svelte";
-  import ScrollySection from "./components/Scrolly/ScrollySection.svelte";
-  import Counter from "./components/Counter/Counter.svelte";
+  // import Image from "./components/Image/Image.svelte";
+  // import Gallery from "./components/Image/Gallery.svelte";
+  // import ScrollySection from "./components/Scrolly/ScrollySection.svelte";
+  // import Counter from "./components/Counter/Counter.svelte";
 
-  import Video from "./components/Video/Video.svelte";
+  // import Video from "./components/Video/Video.svelte";
 
-  import videos from "./data/videos.json";
+  // import videos from "./data/videos.json";
 
   import Vignette from "./components/Vignette/Vignette.svelte";
   import AthleteIndex from "./components/Vignette/AthleteIndex.svelte";
@@ -59,32 +59,8 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
 
 <svelte:window bind:innerWidth />
 
-<section class="bg-[#efece6] py-16 md:py-24">
-  <Grid>
-    <GridRow>
-      <AthleteIndex {athletes} />
-    </GridRow>
-  </Grid>
-</section>
-
-{#each athletes as athlete, i}
-  <!-- full-width band per athlete, alternating white and stone -->
-  <section
-    id="athlete-{i + 1}"
-    class="scroll-mt-12 py-24 md:py-36 {i % 2 === 0
-      ? 'bg-white'
-      : 'bg-[#efece6]'}"
-  >
-    <Grid>
-      <GridRow>
-        <Vignette {athlete} index={i} mirrored={i % 2 === 1} />
-      </GridRow>
-    </Grid>
-  </section>
-{/each}
-
-<Grid additionalClasses={"gap-y-5"}>
-
+<!-- article text between the hero byline and the athlete index -->
+<Grid additionalClasses={"gap-y-5 pb-16 md:pb-24"}>
   <GridRow variant={"inline"} additionalClasses={"gap-y-5"}>
     <Paragraph>
       <Dropcap dropCapLines={3}>L</Dropcap>orem ipsum dolor sit amet consectetur
@@ -110,7 +86,36 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
       exercitationem. Fugit, consequatur!</Paragraph
     >
   </GridRow>
+</Grid>
 
+<!-- index band: a warm neutral, distinct from the athlete colors -->
+<section
+  class="border-y-2 border-[color-mix(in_srgb,var(--color-sole-ink)_24%,white)] bg-[color-mix(in_srgb,var(--color-sole-ink)_6%,white)] py-16 md:py-24"
+>
+  <Grid>
+    <GridRow>
+      <AthleteIndex {athletes} />
+    </GridRow>
+  </Grid>
+</section>
+
+{#each athletes as athlete, i}
+  <!-- full-width band per athlete, washed in that athlete's accent color,
+       with a rule between bands -->
+  <section
+    id="athlete-{i + 1}"
+    class="scroll-mt-12 border-b-2 border-[color-mix(in_srgb,var(--color-sole-ink)_24%,white)] bg-[color-mix(in_srgb,var(--accent)_10%,white)] py-24 md:py-36"
+    style="--accent: {athlete.accent}"
+  >
+    <Grid>
+      <GridRow>
+        <Vignette {athlete} index={i} mirrored={i % 2 === 1} />
+      </GridRow>
+    </Grid>
+  </section>
+{/each}
+
+  <!-- Unused template furniture, kept for reference:
   <GridRow>
     <Counter
       count={globalState.count}
@@ -203,10 +208,6 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
       suscipit omnis asperiores cupiditate, a eos, aliquid libero, reprehenderit
       rerum excepturi ex. Eius perferendis rem fugit nostrum eveniet magnam.</Paragraph
     >
-
-    <!-- Native <video> Video component (replaces JW Player). Build-time-resolved
-         clip JSON spread in; showControls defaults on for the minimal-UX
-         overlay. -->
     <Video
       {...videos.find((v) => v.uuid === "ca87479d-8b16-4f7b-94e3-be0a28b72be0")}
       autoplayThreshold={0.5}
@@ -234,7 +235,7 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
       caption="Caption tk tk tk"
     />
   </GridRow>
-</Grid>
+  -->
 
 <style>
   a {

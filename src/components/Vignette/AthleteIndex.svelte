@@ -27,17 +27,25 @@ portrait-plus-footwear pairing and jumps to that athlete's section
   }
 </script>
 
-<nav aria-label="Athletes in this story" class={additionalClasses}>
+<nav
+  aria-label="Athletes in this story"
+  class="mx-auto max-w-[720px] {additionalClasses}"
+>
   <ol
-    class="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-6"
+    class="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-8 md:gap-y-12"
   >
     {#each athletes as athlete, i}
       {@const id = `athlete-${i + 1}`}
       <li>
-        <a href="#{id}" onclick={(e) => jump(e, id)} class="group block">
+        <a
+          href="#{id}"
+          onclick={(e) => jump(e, id)}
+          class="group block"
+          style="--accent: {athlete.accent}"
+        >
           <div class="relative mb-8">
             <div
-              class="aspect-[4/5] w-[82%] overflow-hidden bg-[#d9d6d0] transition-transform duration-300 group-hover:-translate-y-1"
+              class="aspect-[4/5] w-[82%] overflow-hidden bg-[color-mix(in_srgb,var(--accent)_30%,white)] transition-transform duration-300 group-hover:-translate-y-1"
             >
               {#if athlete.portrait}
                 <img
@@ -48,7 +56,7 @@ portrait-plus-footwear pairing and jumps to that athlete's section
               {/if}
             </div>
             <div
-              class="absolute -bottom-6 right-0 aspect-square w-[44%] bg-[#ebe8e2] shadow-md ring-4 ring-white transition-transform duration-300 group-hover:-translate-y-2"
+              class="absolute -bottom-6 right-0 aspect-square w-[44%] -rotate-2 bg-[color-mix(in_srgb,var(--accent)_16%,white)] shadow-md ring-4 ring-white transition-transform duration-300 group-hover:-translate-y-2"
             >
               {#if athlete.shoe}
                 <img
@@ -59,11 +67,11 @@ portrait-plus-footwear pairing and jumps to that athlete's section
               {/if}
             </div>
           </div>
-          <span class="font-editorial-number-02 block text-text-tertiary"
+          <span class="font-editorial-number-01 text-[2.25rem]! block text-(--accent)"
             >{String(i + 1).padStart(2, "0")}</span
           >
           <span
-            class="font-editorial-body-bold-03 mt-1 block text-text-primary underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-[#00854b]"
+            class="font-editorial-body-bold-03 mt-1 block text-text-primary underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-(--accent)"
             >{athlete.name}</span
           >
           <span

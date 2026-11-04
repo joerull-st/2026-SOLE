@@ -89,6 +89,7 @@ preload six interviews.
 <article
   class="grid grid-cols-1 items-end gap-x-6 gap-y-16 md:grid-cols-12 md:gap-y-0"
   aria-labelledby="athlete-{index}-name"
+  style="--accent: {athlete.accent}"
 >
   <!-- photo pairing -->
   <div
@@ -99,7 +100,7 @@ preload six interviews.
     <button
       type="button"
       onclick={toggle}
-      class="group relative block aspect-[4/5] w-[78%] cursor-pointer overflow-hidden bg-[#d9d6d0] {mirrored
+      class="group relative block aspect-[4/5] w-[78%] cursor-pointer overflow-hidden bg-[color-mix(in_srgb,var(--accent)_30%,white)] {mirrored
         ? 'ml-auto'
         : ''}"
       aria-label={isActive && !isPaused
@@ -114,7 +115,7 @@ preload six interviews.
         />
       {:else}
         <span
-          class="font-utility-label-reg-caps-02 absolute inset-0 flex items-center justify-center text-text-tertiary"
+          class="font-utility-label-reg-caps-02 absolute inset-0 flex items-center justify-center text-(--accent)"
           >Studio portrait</span
         >
       {/if}
@@ -146,7 +147,7 @@ preload six interviews.
 
       {#if !isActive || isPaused}
         <span
-          class="font-utility-label-bold-caps-02 absolute top-4 flex items-center gap-2 rounded-full bg-white/90 px-3 py-2 text-text-primary transition-transform group-hover:scale-105 {mirrored
+          class="font-utility-label-bold-caps-02 absolute top-4 flex items-center gap-2 rounded-full bg-(--accent) px-3 py-2 text-white transition-transform group-hover:scale-105 {mirrored
             ? 'right-4'
             : 'left-4'}"
         >
@@ -158,12 +159,13 @@ preload six interviews.
       {/if}
     </button>
 
-    <!-- footwear overlaps the portrait's lower corner, and shrinks toward its
-         outer corner while the interview plays so it doesn't cover the video -->
+    <!-- footwear overlaps the portrait's lower corner at a slight tilt, like the
+         hero collage's panels, and shrinks toward its outer corner while the
+         interview plays so it doesn't cover the video -->
     <div
-      class="absolute -bottom-12 aspect-square w-[46%] bg-[#ebe8e2] shadow-lg ring-8 ring-white transition-transform duration-500 ease-out motion-reduce:transition-none {mirrored
-        ? 'left-0 origin-bottom-left'
-        : 'right-0 origin-bottom-right'} {isActive && !isPaused
+      class="absolute -bottom-12 aspect-square w-[46%] bg-[color-mix(in_srgb,var(--accent)_16%,white)] shadow-lg ring-8 ring-white transition-transform duration-500 ease-out motion-reduce:transition-none {mirrored
+        ? 'left-0 origin-bottom-left rotate-2'
+        : 'right-0 origin-bottom-right -rotate-2'} {isActive && !isPaused
         ? 'scale-50'
         : 'scale-100'}"
     >
@@ -175,7 +177,7 @@ preload six interviews.
         />
       {:else}
         <span
-          class="font-utility-label-reg-caps-02 flex h-full items-center justify-center text-text-tertiary"
+          class="font-utility-label-reg-caps-02 flex h-full items-center justify-center text-(--accent)"
           >Footwear</span
         >
       {/if}
@@ -188,7 +190,7 @@ preload six interviews.
       ? 'md:col-start-1 md:text-right'
       : 'md:col-start-8'}"
   >
-    <p class="font-editorial-number-01 text-text-tertiary">{number}</p>
+    <p class="font-editorial-number-01 text-(--accent)">{number}</p>
     <h2
       id="athlete-{index}-name"
       class="font-editorial-non-news-heading-02 mt-2 text-text-primary"
@@ -200,7 +202,7 @@ preload six interviews.
         ? ` · ${athlete.grade}`
         : ""}
     </p>
-    <p class="font-utility-label-reg-caps-02 mt-6 text-text-tertiary">
+    <p class="font-utility-label-bold-caps-02 mt-6 text-(--accent)">
       {athlete.footwear}
     </p>
     {#each athlete.footwearDescription as paragraph, p}

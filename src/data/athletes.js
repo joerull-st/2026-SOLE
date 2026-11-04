@@ -17,6 +17,7 @@ const sampleVideo = videos[0];
  *   shoe?: string;
  *   shoeAlt?: string;
  *   video?: typeof sampleVideo;
+ *   accent: string;
  * }} Athlete
  */
 
@@ -33,6 +34,8 @@ export const athletes = [
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-blue)",
   },
   {
     name: "Athlete Name TK",
@@ -45,6 +48,8 @@ export const athletes = [
       "Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-rust)",
   },
   {
     name: "Athlete Name TK",
@@ -57,6 +62,8 @@ export const athletes = [
       "Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-green)",
   },
   {
     name: "Athlete Name TK",
@@ -69,6 +76,8 @@ export const athletes = [
       "Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-ice)",
   },
   {
     name: "Athlete Name TK",
@@ -81,6 +90,8 @@ export const athletes = [
       "Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-brown)",
   },
   {
     name: "Athlete Name TK",
@@ -93,5 +104,7 @@ export const athletes = [
       "Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa.",
     ],
     video: sampleVideo,
+    // panel tint from the hero collage
+    accent: "var(--color-sole-forest)",
   },
 ];

@@ -85,6 +85,15 @@
   --color-text-color-02: #05442e;
   --color-text-color-03: #baec31;
 
+  /* Sole of an Athlete palette, sampled from the hero collage */
+  --color-sole-ink: #1f200d;
+  --color-sole-blue: #1d5f86;
+  --color-sole-green: #2b7d55;
+  --color-sole-rust: #b4532a;
+  --color-sole-ice: #0e86a8;
+  --color-sole-forest: #2f6b3c;
+  --color-sole-brown: #733712;
+
   --color-border-subtle-01: #e1e1e1;
   --color-border-subtle-02: #afafaf;
   --color-border-strong-01: #434343;
