@@ -47,6 +47,10 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
 
   import videos from "./data/videos.json";
 
+  import Vignette from "./components/Vignette/Vignette.svelte";
+  import AthleteIndex from "./components/Vignette/AthleteIndex.svelte";
+  import { athletes } from "./data/athletes.js";
+
   let innerWidth = $state(0);
   let isMobile = $derived(innerWidth < 768);
   let isTablet = $derived(innerWidth >= 768 && innerWidth < 1160);
@@ -54,7 +58,33 @@ The following example uses a ternary to render an image edge-to-edge on mobile b
 </script>
 
 <svelte:window bind:innerWidth />
+
+<section class="bg-[#efece6] py-16 md:py-24">
+  <Grid>
+    <GridRow>
+      <AthleteIndex {athletes} />
+    </GridRow>
+  </Grid>
+</section>
+
+{#each athletes as athlete, i}
+  <!-- full-width band per athlete, alternating white and stone -->
+  <section
+    id="athlete-{i + 1}"
+    class="scroll-mt-12 py-24 md:py-36 {i % 2 === 0
+      ? 'bg-white'
+      : 'bg-[#efece6]'}"
+  >
+    <Grid>
+      <GridRow>
+        <Vignette {athlete} index={i} mirrored={i % 2 === 1} />
+      </GridRow>
+    </Grid>
+  </section>
+{/each}
+
 <Grid additionalClasses={"gap-y-5"}>
+
   <GridRow variant={"inline"} additionalClasses={"gap-y-5"}>
     <Paragraph>
       <Dropcap dropCapLines={3}>L</Dropcap>orem ipsum dolor sit amet consectetur
