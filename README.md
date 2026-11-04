@@ -1,16 +1,8 @@
-# Minnesota Star Tribune Svelte + Vite Template
+# 2026 SOLE
 
-A starter template for building Svelte apps at the Minnesota Star Tribune. Includes reusable components, Tailwind for styling and AWS deploy scripts.
+A project built at the Minnesota Star Tribune with Svelte, Vite and Tailwind.
 
-You're encouraged to modify the included components and write your own. The documentation bundled with each component and [Svelte's interactive tutorial](https://svelte.dev/tutorial/svelte/welcome-to-svelte) are good places to start.
-
-## Starting a project
-
-To start a new project based on this template, click the green `Use this template` button at the top of this page and from the dropdown select `Create a new repository`.
-
-On the following page, make sure the new repository's owner is `striblab` and that the repository is `private`. Click `Create repository` to create your new project.
-
-Now you've created a new repository from the template's code. From the new repository's main Github page, click the green `Code` button and select `Open with Github Desktop` from the dropdown to pull the starter code down to your machine. Or, if you prefer the command line, copy the SSH URL and run `git clone <ssh url>` in your terminal.
+## Setup
 
 This project requires the latest versions of [Node.js](https://nodejs.org) **20** or **22**. Node 22 is preferred. [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) is recommended for installing and managing multiple versions.
 
